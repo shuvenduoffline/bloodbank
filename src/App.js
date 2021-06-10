@@ -10,6 +10,7 @@ import Home from './Pages/Home'
 import About from './Pages/About'
 import Navigations from './Pages/Navigations'
 import BloodRegistration from './Pages/BloodRegistration'
+import Developer from './Pages/Developer'
 
 function App() {
   return (
@@ -25,6 +26,12 @@ function App() {
               </Route>
               <Route path="/registration">
                 <BloodRegistration />
+              </Route>
+              <Route path="/developer">
+                <Developer />
+              </Route>
+              <Route path="/about">
+                <About />
               </Route>
               <Route path="/">
                 <Home />

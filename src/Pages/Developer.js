@@ -13,16 +13,16 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const About = () => {
+const Developer = () => {
     const classes = useStyles();
 
     return (
         <div
         className={classes.root}
         >
-           About
+           Developer
         </div>
     );
 }
 
-export default About;
+export default Developer;

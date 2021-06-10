@@ -28,8 +28,8 @@ const Navigations = () => {
         >
             <NavItem name={'Home'} onClickMenu={navigateToPath} path={'/home'}/>
             <NavItem name={'Blood Registration'} onClickMenu={navigateToPath} path={'/registration'}/>
-            <NavItem name={'Developer'} onClickMenu={navigateToPath} path={'/home'}/>
-            <NavItem name={'About Us'} onClickMenu={navigateToPath} path={'/home'}/>
+            <NavItem name={'Developer'} onClickMenu={navigateToPath} path={'/developer'}/>
+            <NavItem name={'About Us'} onClickMenu={navigateToPath} path={'/about'}/>
         </div>
     );
 }
