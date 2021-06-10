@@ -25,17 +25,22 @@ const useStyles = makeStyles((theme) => ({
     },
     iconButton: {
       padding: 10,
-    }
+    },
+    container : {display : 'flex', flexDirection: 'row', margin: 20, padding: 20, width: '100%'},
+    leftDiv :  { display: 'flex', flexDirection: 'column', alignItems : 'center', justifyContent: 'flex-start', width : '40%'},
+    rightDiv : { width : '60%' , height : '100%'},
+    heading : {margin : 2, color: 'white'},
+    details : {color : 'white'}
   }));
 
 const Home = () => {
 
     const classes = useStyles();
     return (
-        <div style={{display : 'flex', flexDirection: 'row', margin: 20, padding: 20, width: '100%'}}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems : 'center', justifyContent: 'flex-start', width : '40%'}}>
-                <h2 style={{margin: 2}}>Blood Bank</h2>
-                <p>New Generations Blood Bank powered by decentralize blockchain solution. Build in Ethereum Network. Blood Collect to Blood Verification, Distribution all done with fully decentralized system. </p>
+        <div className={classes.container}>
+            <div className={classes.leftDiv}>
+                <h2 className={classes.heading}>Blood Bank</h2>
+                <p className={classes.details}>New Generations Blood Bank powered by decentralize blockchain solution. Build in Ethereum Network. Blood Collect to Blood Verification, Distribution all done with fully decentralized system. </p>
                 <Paper component="form" className={classes.root}>
                     <InputBase
                         className={classes.input}
@@ -47,7 +52,7 @@ const Home = () => {
                     </IconButton>
                 </Paper>
             </div>
-            <div style={{ width : '60%' , height : '100%'}}>
+            <div  className={classes.rightDiv}>
                 <img src={LogoImage} width='100%' height='100%' />
             </div>
         </div>
