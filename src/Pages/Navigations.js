@@ -28,7 +28,7 @@ const Navigations = () => {
         >
             <NavItem name={'Home'} onClickMenu={navigateToPath} path={'/home'}/>
             <NavItem name={'Blood Registration'} onClickMenu={navigateToPath} path={'/registration'}/>
-            <NavItem name={'Developer'} onClickMenu={navigateToPath} path={'/developer'}/>
+            <NavItem name={'Agency'} onClickMenu={navigateToPath} path={'/addagency'}/>
             <NavItem name={'About Us'} onClickMenu={navigateToPath} path={'/about'}/>
         </div>
     );
