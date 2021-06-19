@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import LogoImage from '../assets/blood_donation2.svg'
 import Button from '@material-ui/core/Button';
-
+import {BLOOD_BANK_ADDRESS,BLOOD_BANK_ABI} from '../SmartContractConfig.js'
+import Alert from '@material-ui/lab/Alert';
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -25,11 +26,11 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 20,
         marginRight: 20,
         justifyContent: 'space-between',
-        height: '60vh'
+        height: '80vh'
       }
   }));
 
-const BloodRegistration = () => {
+const BloodRegistration = ({account}) => {
 
     const classes = useStyles();
     const [donarName,setDonarName] = useState('')
@@ -37,10 +38,57 @@ const BloodRegistration = () => {
     const [bloodGroup,setBloodGroup] = useState('')
     const [bloodQuality,setQloodQuality] = useState('')
     const [remarks,setRemarks] = useState('')
+    const [medicalDetails,setMedicalDetails] = useState('')
+    const [age,setage] = useState('')
+    const [bottleId,setBottleId] = useState('')
+    const [message,setMessage] = useState('')
 
-    const isValid = donarName && donarPhone && bloodGroup && bloodQuality && remarks
+    const isValid = donarName && donarPhone && bloodGroup && bloodQuality && remarks && medicalDetails && age && bottleId
 
-    console.log(donarName + ' phone : '+ donarPhone + ' bloodgr: '+ bloodGroup + ' qua: '+bloodQuality + ' rem: '+ remarks)
+
+    const regiterBlood = () => {
+        if(isValid){        
+        let publishDate = new Date().toLocaleDateString(); //web3.utils.fromAscii(docName)
+         //convert to better use
+         publishDate = window.web3.utils.fromAscii(publishDate);
+         const _bloodGroup = window.web3.utils.fromAscii(bloodGroup);
+         const _bloodQuality = window.web3.utils.fromAscii(bloodQuality);
+         const _remarks = window.web3.utils.fromAscii(remarks);
+         const _donarName = window.web3.utils.fromAscii(donarName);
+         const _medicalDetails = window.web3.utils.fromAscii(medicalDetails);
+
+         console.log("Adding Blood");
+         const bloodBankContract = new window.web3.eth.Contract(BLOOD_BANK_ABI, BLOOD_BANK_ADDRESS)
+         bloodBankContract.defaultAccount = account;
+ 
+         try{
+             bloodBankContract.methods.setBloodDetails(
+                 _bloodGroup,
+                 _bloodQuality,
+                 _remarks,
+                 _donarName,
+                age,
+                _medicalDetails,
+                donarPhone,
+                bottleId,
+                publishDate,
+                publishDate
+             )
+             .send({
+                 from: account
+             })
+ 
+             setMessage('Blood Registered Successfully!\nView it on Etherscan!');
+ 
+             setTimeout(()=> {
+                 window.location = '/';
+             },2000)
+ 
+         }catch(error){
+             console.log(error)
+         }
+        }
+     }
     
     return (
         <div className={classes.root}
@@ -49,6 +97,7 @@ const BloodRegistration = () => {
             <img src={LogoImage} width='100%' height='100%' alt='Blood Donation Pic' />
            </div>
            <div className={classes.rightDiv}>
+           {message && <Alert style={{margin: 10}} severity="success">{message}</Alert>}
            <form className={classes.rightDiv} autoComplete="off">
                
                     <TextField
@@ -85,6 +134,30 @@ const BloodRegistration = () => {
                     />
                     <TextField
                         required
+                        id="medical"
+                        label="Medical Details"
+                        variant="outlined"
+                        value={medicalDetails}
+                        onChange={e => setMedicalDetails(e.currentTarget.value)}
+                    />
+                    <TextField
+                        required
+                        id="age"
+                        label="Age"
+                        variant="outlined"
+                        value={age}
+                        onChange={e => setage(e.currentTarget.value)}
+                    />
+                    <TextField
+                        required
+                        id="bottleId"
+                        label="Bottle Id"
+                        variant="outlined"
+                        value={bottleId}
+                        onChange={e => setBottleId(e.currentTarget.value)}
+                    />
+                    <TextField
+                        required
                         id="remarks"
                         label="Remarks"
                         variant="outlined"
@@ -92,7 +165,7 @@ const BloodRegistration = () => {
                         onChange={e => setRemarks(e.currentTarget.value)}
                     />
 
-            <Button variant="contained" color="primary" type="submit" disabled={!isValid}>
+            <Button variant="contained" color="primary" disabled={!isValid} onClick={() => regiterBlood()}>
                 Register Blood
             </Button>
             </form>

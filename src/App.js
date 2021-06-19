@@ -58,7 +58,9 @@ function App() {
                 <About />
               </Route>
               <Route path="/registration">
-                <BloodRegistration />
+                <BloodRegistration
+                 account={account}
+                />
               </Route>
               <Route path="/developer">
                 <Developer />
@@ -67,10 +69,14 @@ function App() {
                 <About />
               </Route>
               <Route path="/addagency">
-                <AddAgency />
+                <AddAgency 
+                 account={account}
+                />
               </Route>
               <Route path="/">
-                <Home />
+                <Home 
+                account={account}
+                />
               </Route>
             </Switch>
     </Router>

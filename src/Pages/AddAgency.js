@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import LogoImage from '../assets/add_agency.svg'
 import Button from '@material-ui/core/Button';
+import Alert from '@material-ui/lab/Alert';
 import {BLOOD_BANK_ADDRESS,BLOOD_BANK_ABI} from '../SmartContractConfig.js'
 
 const useStyles = makeStyles((theme) => ({
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
       }
   }));
 
-const AddAgency = () => {
+const AddAgency = ({account}) => {
 
     // agency.agencyType=_agencyType;
     // agency.agencyName = _agencyName;
@@ -49,12 +50,47 @@ const AddAgency = () => {
     const [contact_No,setContact_No] = useState('')
     const [address_Line1,setAddress_Line1] = useState('')
     const [pincode,setPincode] = useState('')
+    const [message,setMessage] = useState('')
 
     const isValid = agencyType && agencyName && addressID && contact_Person && contact_No && address_Line1 && pincode
 
+    console.log('add agency : '+ account)
 
     const addAgencyToBlockChain = () => {
+       if(isValid){        
+        //    let publishDate = new Date().toLocaleDateString(); //web3.utils.fromAscii(docName)
+        // //convert to better use
+        // publishDate = window.web3.utils.fromAscii(publishDate);
+        // const _bloodGroup = window.web3.utils.fromAscii(bloodG);
+        // const doc_id = window.web3.utils.fromAscii(docID);
+        console.log("Adding Agecy");
         const bloodBankContract = new window.web3.eth.Contract(BLOOD_BANK_ABI, BLOOD_BANK_ADDRESS)
+        bloodBankContract.defaultAccount = account;
+
+        try{
+            bloodBankContract.methods.addAgency(
+                agencyType,
+                agencyName,
+                addressID,
+                contact_Person,
+                contact_No,
+                address_Line1,
+                pincode
+            )
+            .send({
+                from: account
+            })
+
+            setMessage('Added Agency Details Successfully!\nView it on Etherscan!');
+
+            setTimeout(()=> {
+                window.location = '/';
+            },2000)
+
+        }catch(error){
+            console.log(error)
+        }
+       }
     }
 
 
@@ -65,6 +101,7 @@ const AddAgency = () => {
             <img src={LogoImage} width='60%' height='60%' alt='Blood Donation Pic' style={{marginTop : 30}} />
            </div>
            <div className={classes.rightDiv}>
+           {message && <Alert style={{margin: 10}} severity="success">{message}</Alert>}
            <form className={classes.rightDiv} autoComplete="off">
                
                     <TextField
@@ -97,7 +134,7 @@ const AddAgency = () => {
                         label="Contact Person"
                         variant="outlined"
                         value={contact_Person}
-                        onChange={e => setContact_No(e.currentTarget.value)}
+                        onChange={e => setContact_Person(e.currentTarget.value)}
                     />
                     <TextField
                         required
@@ -124,7 +161,7 @@ const AddAgency = () => {
                         onChange={e => setPincode(e.currentTarget.value)}
                     />
 
-            <Button variant="contained" color="primary" type="submit" disabled={!isValid}>
+            <Button variant="contained" color="primary" disabled={!isValid} onClick={() => addAgencyToBlockChain()}>
                 Add Agency
             </Button>
             </form>
