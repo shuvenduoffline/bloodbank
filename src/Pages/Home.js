@@ -13,6 +13,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Alert from '@material-ui/lab/Alert';
 import {BLOOD_BANK_ADDRESS,BLOOD_BANK_ABI} from '../SmartContractConfig.js'
 
 
@@ -60,6 +61,7 @@ const Home = ({account}) => {
     const [bottleId, setBottleId] = React.useState(null);
     const [error, setError] = React.useState(null);
     const [bloodDetails, setBloodDetails] = React.useState();
+    const [message,setMessage] = React.useState('');
 
 
     // {
@@ -80,6 +82,7 @@ const Home = ({account}) => {
         if(bottleId != null){
             setBloodDetails(null);
             setError(null);
+            setMessage('')
             const bloodBankContract = new window.web3.eth.Contract(BLOOD_BANK_ABI, BLOOD_BANK_ADDRESS)
             bloodBankContract.defaultAccount = account;
             bloodBankContract.methods.getbloodBottleData(bottleId)
@@ -87,6 +90,48 @@ const Home = ({account}) => {
             .then(blockBloodDetails => {
                 console.log(blockBloodDetails);
                 setBloodDetails(blockBloodDetails);
+            })
+            .catch(error => {
+                console.log(error)
+                setError(error.message)
+            });
+        }
+    }
+
+    const verifyBottle = (bottleId) => {
+        console.log('Verifying blood details' , bottleId)
+        if(bottleId != null){
+            const bloodBankContract = new window.web3.eth.Contract(BLOOD_BANK_ABI, BLOOD_BANK_ADDRESS)
+            bloodBankContract.defaultAccount = account;
+            bloodBankContract.methods.verifyBloodBottle(bottleId)
+            .send({
+                from: account
+            })
+            .then(blockBloodDetails => {
+                console.log(blockBloodDetails);
+                setBloodDetails({...bloodDetails, Status : '1'})
+                setMessage("Blood Bottle Verified!")
+            })
+            .catch(error => {
+                console.log(error)
+                setError(error.message)
+            });
+        }
+    }
+
+    const markDeliveredBottle = (bottleId) => {
+        console.log('Delivering blood details' , bottleId)
+        if(bottleId != null){
+            const bloodBankContract = new window.web3.eth.Contract(BLOOD_BANK_ABI, BLOOD_BANK_ADDRESS)
+            bloodBankContract.defaultAccount = account;
+            bloodBankContract.methods.DeliverBloodBottle(bottleId)
+            .send({
+                from: account
+            })
+            .then(blockBloodDetails => {
+                console.log(blockBloodDetails);
+                setBloodDetails({...bloodDetails, Status : '2'})
+                setMessage("Blood Bottle Marked Delivered!")
             })
             .catch(error => {
                 console.log(error)
@@ -115,6 +160,7 @@ const Home = ({account}) => {
                 </Paper>
 
                 {error && <p>{error}</p>}
+                {message && <Alert style={{margin: 10}} severity="success">{message}</Alert>}
                             {bloodDetails && <Card className={classes.card}>
                                     <CardContent>
                                         {/* <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -140,10 +186,12 @@ const Home = ({account}) => {
                                         Blood Quality : {window.web3.utils.toAscii(bloodDetails.Quality)}
                                         <br />
                                         Remarks : {window.web3.utils.toAscii(bloodDetails.Remarks)}
+                                        <br />
+                                        Status : {bloodDetails.Status === '1' ? 'Verified' : bloodDetails.Status === '2' ? 'Delivered' : 'New'}
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button>Verify</Button>
+                                        {bloodDetails.Status === '0' ? <Button onClick={() => verifyBottle(bottleId)}>Verify</Button> : bloodDetails.Status === '1' ? <Button onClick={() => markDeliveredBottle(bottleId)}>Mark Delivered</Button> : null}
                                     </CardActions>
                 </Card>}
             </div>

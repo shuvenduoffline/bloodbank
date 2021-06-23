@@ -414,3 +414,6 @@ export const BLOOD_BANK_ABI = [
 		"type": "function"
 	}
 ]
+
+
+export const CONTRACT_OWNER = '0x1142F4720cE7CCDA94E3aa2FD563Af2A371110Cd'

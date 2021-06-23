@@ -18,7 +18,11 @@ const Navigations = () => {
     const classes = useStyles();
 
     const navigateToPath = path => {
-        window.location = path;
+        if(path === '/about'){
+            window.location = 'https://github.com/shuvenduoffline'
+        }else{
+            window.location = path;
+        }
       }
 
 

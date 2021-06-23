@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import LogoImage from '../assets/add_agency.svg'
+import LogoImage from '../assets/agency_doctor.svg'
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
-import {BLOOD_BANK_ADDRESS,BLOOD_BANK_ABI} from '../SmartContractConfig.js'
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import {BLOOD_BANK_ADDRESS,BLOOD_BANK_ABI, CONTRACT_OWNER} from '../SmartContractConfig.js'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,7 +32,23 @@ const useStyles = makeStyles((theme) => ({
         marginRight: 20,
         justifyContent: 'space-between',
         height: '80vh'
-      }
+      },
+      card: {
+        minWidth: 500,
+        marginTop: 30,
+        minHeight: 250
+      },
+      bullet: {
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
+      },
+      title: {
+        fontSize: 14,
+      },
+      pos: {
+        marginBottom: 12,
+      },
   }));
 
 const AddAgency = ({account}) => {
@@ -51,10 +71,14 @@ const AddAgency = ({account}) => {
     const [address_Line1,setAddress_Line1] = useState('')
     const [pincode,setPincode] = useState('')
     const [message,setMessage] = useState('')
+    const [agencyData,setAgencyData] = useState('')
+    const [showAddAgency,setShowAddAgency] = useState(false)
+
+
 
     const isValid = agencyType && agencyName && addressID && contact_Person && contact_No && address_Line1 && pincode
 
-    console.log('add agency : '+ account)
+    
 
     const addAgencyToBlockChain = () => {
        if(isValid){        
@@ -93,6 +117,33 @@ const AddAgency = ({account}) => {
        }
     }
 
+    React.useEffect(() => {
+        loadAgencyDetails(account)
+    },[account])
+
+    const loadAgencyDetails =async (acc) => {
+        console.log('Acc : '+acc)
+        if(acc){
+            try{
+                const bloodBankContract = new window.web3.eth.Contract(BLOOD_BANK_ABI, BLOOD_BANK_ADDRESS)
+                bloodBankContract.defaultAccount = acc;
+                bloodBankContract.methods.getAgencyData(
+                   acc
+                )
+                .call()
+                .then(agencyData => {
+                    console.log(agencyData)
+                   setAgencyData(agencyData)
+                })
+            }catch(error){
+                console.log(error)
+            }
+            
+        }
+    }
+
+    
+
 
     return (
         <div className={classes.root}
@@ -102,7 +153,7 @@ const AddAgency = ({account}) => {
            </div>
            <div className={classes.rightDiv}>
            {message && <Alert style={{margin: 10}} severity="success">{message}</Alert>}
-           <form className={classes.rightDiv} autoComplete="off">
+           {account === CONTRACT_OWNER && showAddAgency ? <form className={classes.rightDiv} autoComplete="off">
                
                     <TextField
                         required
@@ -164,10 +215,52 @@ const AddAgency = ({account}) => {
             <Button variant="contained" color="primary" disabled={!isValid} onClick={() => addAgencyToBlockChain()}>
                 Add Agency
             </Button>
-            </form>
+            </form> : <Card className={classes.card}>
+                                    <CardContent>
+                                        {/* <Typography className={classes.title} color="textSecondary" gutterBottom>
+                                        Word of the Day
+                                        </Typography> */}
+                                        <Typography variant="h5" component="h2">
+                                         Agency Name : {agencyData.agencyName}
+                                        </Typography>
+                                       
+                                        <Typography variant="body2" component="p">
+                                        Agency Type : {agencyData.agencyType}
+                                        <br />
+                                        Address  : {agencyData.addressID}
+                                        <br />
+                                        Contact Person : {agencyData.contactPerson}
+                                        <br />
+                                        Contact Number : {agencyData.contactNo}
+                                        <br />
+                                        Agency Address : {agencyData.agencyAddress}
+                                        <br />
+                                        Pincode : {agencyData.pincode}
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions>
+                                       {account === CONTRACT_OWNER && <Button onClick={() => setShowAddAgency(true)}>Add Agency</Button> }
+                                    </CardActions>
+                </Card>}
            </div>
         </div>
     );
+
+//     addressID: "0x1142F4720cE7CCDA94E3aa2FD563Af2A371110Cd"
+// ​
+// agencyAddress: "Rajabazar, Kolkata"
+// ​
+// agencyName: "Vein Care"
+// ​
+// agencyType: "Blood Center"
+// ​
+// contactNo: "1234567899"
+// ​
+// contactPerson: "Shuvendu Dhal"
+// ​
+// length: 7
+// ​
+// pincode: "700009"
 }
 
 export default AddAgency;
