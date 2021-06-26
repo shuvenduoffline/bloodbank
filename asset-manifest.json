@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/bloodbank/static/css/main.18641ae9.chunk.css",
-    "main.js": "/bloodbank/static/js/main.c1f494fd.chunk.js",
-    "main.js.map": "/bloodbank/static/js/main.c1f494fd.chunk.js.map",
+    "main.js": "/bloodbank/static/js/main.d11698ef.chunk.js",
+    "main.js.map": "/bloodbank/static/js/main.d11698ef.chunk.js.map",
     "runtime-main.js": "/bloodbank/static/js/runtime-main.a66e7d37.js",
     "runtime-main.js.map": "/bloodbank/static/js/runtime-main.a66e7d37.js.map",
-    "static/js/2.e5d82c1a.chunk.js": "/bloodbank/static/js/2.e5d82c1a.chunk.js",
-    "static/js/2.e5d82c1a.chunk.js.map": "/bloodbank/static/js/2.e5d82c1a.chunk.js.map",
+    "static/js/2.6d539879.chunk.js": "/bloodbank/static/js/2.6d539879.chunk.js",
+    "static/js/2.6d539879.chunk.js.map": "/bloodbank/static/js/2.6d539879.chunk.js.map",
     "static/js/3.6c689f5c.chunk.js": "/bloodbank/static/js/3.6c689f5c.chunk.js",
     "static/js/3.6c689f5c.chunk.js.map": "/bloodbank/static/js/3.6c689f5c.chunk.js.map",
     "index.html": "/bloodbank/index.html",
     "static/css/main.18641ae9.chunk.css.map": "/bloodbank/static/css/main.18641ae9.chunk.css.map",
-    "static/js/2.e5d82c1a.chunk.js.LICENSE.txt": "/bloodbank/static/js/2.e5d82c1a.chunk.js.LICENSE.txt",
+    "static/js/2.6d539879.chunk.js.LICENSE.txt": "/bloodbank/static/js/2.6d539879.chunk.js.LICENSE.txt",
     "static/media/agency_doctor.4097dc4b.svg": "/bloodbank/static/media/agency_doctor.4097dc4b.svg",
     "static/media/blood_donation1.3b79b00a.svg": "/bloodbank/static/media/blood_donation1.3b79b00a.svg",
     "static/media/blood_donation2.841028d5.svg": "/bloodbank/static/media/blood_donation2.841028d5.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.a66e7d37.js",
-    "static/js/2.e5d82c1a.chunk.js",
+    "static/js/2.6d539879.chunk.js",
     "static/css/main.18641ae9.chunk.css",
-    "static/js/main.c1f494fd.chunk.js"
+    "static/js/main.d11698ef.chunk.js"
   ]
 }
