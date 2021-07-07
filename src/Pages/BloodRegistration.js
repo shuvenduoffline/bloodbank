@@ -81,7 +81,7 @@ const BloodRegistration = ({account}) => {
              setMessage('Blood Registered Successfully!\nView it on Etherscan!');
  
              setTimeout(()=> {
-                 window.location = '/';
+                 window.location = process.env.PUBLIC_URL + '/#'+ '/';
              },2000)
  
          }catch(error){

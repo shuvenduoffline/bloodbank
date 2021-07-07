@@ -13,6 +13,7 @@ import Navigations from './Pages/Navigations'
 import BloodRegistration from './Pages/BloodRegistration'
 import Developer from './Pages/Developer'
 import AddAgency from './Pages/AddAgency'
+import Dashboard from './Pages/Dashboard'
 import React from 'react';
 
 //web3 set up
@@ -53,8 +54,8 @@ function App() {
           <Navigations />
       </div>
         
-        <HashRouter basename='/' >
-         <Router>
+      
+         <HashRouter>
             <Switch>
               <Route path="/about">
                 <About />
@@ -75,14 +76,19 @@ function App() {
                  account={account}
                 />
               </Route>
+              <Route path="/stats">
+                <Dashboard 
+                 account={account}
+                />
+              </Route>
               <Route path="/">
                 <Home 
                 account={account}
                 />
               </Route>
             </Switch>
-    </Router>
     </HashRouter>
+   
     </div>
   );
 }

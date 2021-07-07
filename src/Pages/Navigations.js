@@ -18,11 +18,11 @@ const Navigations = () => {
     const classes = useStyles();
 
     const navigateToPath = path => {
-        if(path === '/about'){
-            window.location = 'https://github.com/shuvenduoffline'
-        }else{
-            window.location = path;
-        }
+        // if(path === '/about'){
+        //     window.location = 'https://github.com/shuvenduoffline'
+        // }else{
+        // }
+        window.location = process.env.PUBLIC_URL + '/#' + path;
       }
 
 
@@ -33,6 +33,7 @@ const Navigations = () => {
             <NavItem name={'Home'} onClickMenu={navigateToPath} path={'/'}/>
             <NavItem name={'Blood Registration'} onClickMenu={navigateToPath} path={'/registration'}/>
             <NavItem name={'Agency'} onClickMenu={navigateToPath} path={'/addagency'}/>
+            <NavItem name={'Stats'} onClickMenu={navigateToPath} path={'/stats'}/>
             <NavItem name={'About Us'} onClickMenu={navigateToPath} path={'/about'}/>
         </div>
     );
