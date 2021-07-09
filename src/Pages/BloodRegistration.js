@@ -5,6 +5,12 @@ import LogoImage from '../assets/blood_donation2.svg'
 import Button from '@material-ui/core/Button';
 import {BLOOD_BANK_ADDRESS,BLOOD_BANK_ABI} from '../SmartContractConfig.js'
 import Alert from '@material-ui/lab/Alert';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -35,7 +41,7 @@ const BloodRegistration = ({account}) => {
     const classes = useStyles();
     const [donarName,setDonarName] = useState('')
     const [donarPhone,setDonarPhone] = useState('')
-    const [bloodGroup,setBloodGroup] = useState('')
+    const [bloodGroup,setBloodGroup] = useState(0)
     const [bloodQuality,setQloodQuality] = useState('')
     const [remarks,setRemarks] = useState('')
     const [medicalDetails,setMedicalDetails] = useState('')
@@ -44,6 +50,7 @@ const BloodRegistration = ({account}) => {
     const [message,setMessage] = useState('')
 
     const isValid = donarName && donarPhone && bloodGroup && bloodQuality && remarks && medicalDetails && age && bottleId
+    && donarName.length > 2 &&  !isNaN(donarPhone) && donarPhone.length === 10 && !isNaN(bottleId) && !isNaN(age)
 
 
     const regiterBlood = () => {
@@ -62,7 +69,7 @@ const BloodRegistration = ({account}) => {
          bloodBankContract.defaultAccount = account;
  
          try{
-             bloodBankContract.methods.setBloodDetails(
+             bloodBankContract.methods.AddBloodDetails(
                  _bloodGroup,
                  _bloodQuality,
                  _remarks,
@@ -89,6 +96,8 @@ const BloodRegistration = ({account}) => {
          }
         }
      }
+
+     console.log('Blood Bottle Group : '+ bloodGroup)
     
     return (
         <div className={classes.root}
@@ -116,14 +125,36 @@ const BloodRegistration = ({account}) => {
                         value={donarPhone}
                         onChange={e => setDonarPhone(e.currentTarget.value)}
                     />
-                    <TextField
+                    {/* <TextField
                         required
                         id="bloodgroup"
                         label="Blood Group"
                         variant="outlined"
                         value={bloodGroup}
                         onChange={e => setBloodGroup(e.currentTarget.value)}
-                    />
+                    /> */}
+                     <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel id="demo-simple-select-outlined-label">Blood Group</InputLabel>
+        <Select
+          labelId="demo-simple-select-outlined-label"
+          id="demo-simple-select-outlined"
+          value={bloodGroup}
+          onChange={e => {
+              console.log(e)
+            setBloodGroup(e.target.value)
+          }}
+          label="Blood Group"
+        >
+          <MenuItem value={0}>OPositive</MenuItem>
+          <MenuItem value={1}>ONegative</MenuItem>
+          <MenuItem value={2}>APositive</MenuItem>
+          <MenuItem value={3}>ANegative</MenuItem>
+          <MenuItem value={4}>BPositive</MenuItem>
+          <MenuItem value={5}>BNegative</MenuItem>
+          <MenuItem value={6}>ABPositive</MenuItem>
+          <MenuItem value={7}>ABNegative</MenuItem>
+        </Select>
+      </FormControl>
                     <TextField
                         required
                         id="quality"

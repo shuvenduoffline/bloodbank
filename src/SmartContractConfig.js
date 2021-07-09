@@ -1,11 +1,6 @@
-export const BLOOD_BANK_ADDRESS = '0xAC23538589b31AE5715EBff6D8e1b8Ff5b19A091'
+export const BLOOD_BANK_ADDRESS = '0x4DDc498BB78b755077eA0Fd90E1900869e8E63d4'
 
 export const BLOOD_BANK_ABI = [
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
 	{
 		"anonymous": false,
 		"inputs": [
@@ -30,19 +25,6 @@ export const BLOOD_BANK_ABI = [
 		],
 		"name": "BloodBottleStatusEvent",
 		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_BloodBottleId",
-				"type": "uint256"
-			}
-		],
-		"name": "DeliverBloodBottle",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
 	},
 	{
 		"inputs": [
@@ -86,6 +68,95 @@ export const BLOOD_BANK_ABI = [
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_BloodGroup",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_Quality",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_Remarks",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_DonerName",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_DonerAge",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_DonerMedicalDetails",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_DonerContactNo",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_BloodBottleId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_DateCreated",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_DateUpdated",
+				"type": "bytes32"
+			}
+		],
+		"name": "AddBloodDetails",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_BloodBottleId",
+				"type": "uint256"
+			}
+		],
+		"name": "DeliverBloodBottle",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_BloodBottleId",
+				"type": "uint256"
+			}
+		],
+		"name": "verifyBloodBottle",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
 	},
 	{
 		"inputs": [
@@ -139,6 +210,25 @@ export const BLOOD_BANK_ABI = [
 	{
 		"inputs": [
 			{
+				"internalType": "enum BloodBank.BloodGroup",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"name": "bloodGroup",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "address",
 				"name": "",
 				"type": "address"
@@ -152,9 +242,9 @@ export const BLOOD_BANK_ABI = [
 		"name": "bloodsCollection",
 		"outputs": [
 			{
-				"internalType": "bytes32",
+				"internalType": "uint256",
 				"name": "BloodGroup",
-				"type": "bytes32"
+				"type": "uint256"
 			},
 			{
 				"internalType": "bytes32",
@@ -192,7 +282,7 @@ export const BLOOD_BANK_ABI = [
 				"type": "uint256"
 			},
 			{
-				"internalType": "enum BoodBank.BloodBottleStatus",
+				"internalType": "enum BloodBank.BloodBottleStatus",
 				"name": "Status",
 				"type": "uint8"
 			},
@@ -258,7 +348,7 @@ export const BLOOD_BANK_ABI = [
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct BoodBank.Agency",
+				"internalType": "struct BloodBank.Agency",
 				"name": "agency",
 				"type": "tuple"
 			}
@@ -279,9 +369,9 @@ export const BLOOD_BANK_ABI = [
 			{
 				"components": [
 					{
-						"internalType": "bytes32",
+						"internalType": "uint256",
 						"name": "BloodGroup",
-						"type": "bytes32"
+						"type": "uint256"
 					},
 					{
 						"internalType": "bytes32",
@@ -319,7 +409,7 @@ export const BLOOD_BANK_ABI = [
 						"type": "uint256"
 					},
 					{
-						"internalType": "enum BoodBank.BloodBottleStatus",
+						"internalType": "enum BloodBank.BloodBottleStatus",
 						"name": "Status",
 						"type": "uint8"
 					},
@@ -334,7 +424,7 @@ export const BLOOD_BANK_ABI = [
 						"type": "bytes32"
 					}
 				],
-				"internalType": "struct BoodBank.BloodBottle",
+				"internalType": "struct BloodBank.BloodBottle",
 				"name": "_bloodBottle",
 				"type": "tuple"
 			}
@@ -345,75 +435,48 @@ export const BLOOD_BANK_ABI = [
 	{
 		"inputs": [
 			{
-				"internalType": "bytes32",
+				"internalType": "uint256",
 				"name": "_BloodGroup",
-				"type": "bytes32"
-			},
-			{
-				"internalType": "bytes32",
-				"name": "_Quality",
-				"type": "bytes32"
-			},
-			{
-				"internalType": "bytes32",
-				"name": "_Remarks",
-				"type": "bytes32"
-			},
-			{
-				"internalType": "bytes32",
-				"name": "_DonerName",
-				"type": "bytes32"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_DonerAge",
 				"type": "uint256"
-			},
-			{
-				"internalType": "bytes32",
-				"name": "_DonerMedicalDetails",
-				"type": "bytes32"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_DonerContactNo",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_BloodBottleId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes32",
-				"name": "_DateCreated",
-				"type": "bytes32"
-			},
-			{
-				"internalType": "bytes32",
-				"name": "_DateUpdated",
-				"type": "bytes32"
 			}
 		],
-		"name": "setBloodDetails",
-		"outputs": [],
-		"stateMutability": "nonpayable",
+		"name": "GetBloodBottleGroupTotal",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "a",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
-		"inputs": [
+		"inputs": [],
+		"name": "TotalNoOfAgencies",
+		"outputs": [
 			{
 				"internalType": "uint256",
-				"name": "_BloodBottleId",
+				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "verifyBloodBottle",
-		"outputs": [],
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	}
 ]
-
 
 export const CONTRACT_OWNER = '0x1142F4720cE7CCDA94E3aa2FD563Af2A371110Cd'

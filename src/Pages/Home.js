@@ -15,6 +15,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Alert from '@material-ui/lab/Alert';
 import {BLOOD_BANK_ADDRESS,BLOOD_BANK_ABI} from '../SmartContractConfig.js'
+import {getBlooodGroup} from '../util/Util';
 
 
 
@@ -79,7 +80,7 @@ const Home = ({account}) => {
     //get blood details
     const getBloodDetails = (bottleId) => {
         console.log('Getting blood details' , bottleId)
-        if(bottleId != null){
+        if(bottleId != null && !isNaN(bottleId)){
             setBloodDetails(null);
             setError(null);
             setMessage('')
@@ -181,7 +182,7 @@ const Home = ({account}) => {
                                         <br />
                                         Phone Number : {bloodDetails.DonerContactNo}
                                         <br />
-                                        Blood Group : {window.web3.utils.toAscii(bloodDetails.BloodGroup)}
+                                        Blood Group : {getBlooodGroup(bloodDetails.BloodGroup)}
                                         <br />
                                         Blood Quality : {window.web3.utils.toAscii(bloodDetails.Quality)}
                                         <br />
