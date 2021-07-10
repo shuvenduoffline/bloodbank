@@ -77,6 +77,8 @@ const AddAgency = ({account}) => {
 
 
     const isValid = agencyType && agencyName && addressID && contact_Person && contact_No && address_Line1 && pincode
+    && agencyType.length > 2 && agencyName.length > 2 && addressID.length > 5 && contact_Person.length > 2 && !isNaN(contact_No)
+    && contact_No.length === 10 && address_Line1.length > 2 && !isNaN(pincode) && pincode.length === 6 && window.web3 && window.web3.utils.isAddress(addressID)
 
     
 
@@ -179,6 +181,7 @@ const AddAgency = ({account}) => {
                         value={addressID}
                         onChange={e => setAddressID(e.currentTarget.value)}
                     />
+                    {addressID && window.web3 && !window.web3.utils.isAddress(addressID) &&  <p>Not a valid address!</p>}
                     <TextField
                         required
                         id="contact_person"

@@ -49,7 +49,7 @@ const BloodRegistration = ({account}) => {
     const [bottleId,setBottleId] = useState('')
     const [message,setMessage] = useState('')
 
-    const isValid = donarName && donarPhone && bloodGroup && bloodQuality && remarks && medicalDetails && age && bottleId
+    const isValid = donarName && donarPhone && bloodGroup > -1 && bloodGroup < 8 && bloodQuality && remarks && medicalDetails && age && bottleId
     && donarName.length > 2 &&  !isNaN(donarPhone) && donarPhone.length === 10 && !isNaN(bottleId) && !isNaN(age)
 
 
@@ -58,7 +58,7 @@ const BloodRegistration = ({account}) => {
         let publishDate = new Date().toLocaleDateString(); //web3.utils.fromAscii(docName)
          //convert to better use
          publishDate = window.web3.utils.fromAscii(publishDate);
-         const _bloodGroup = window.web3.utils.fromAscii(bloodGroup);
+         
          const _bloodQuality = window.web3.utils.fromAscii(bloodQuality);
          const _remarks = window.web3.utils.fromAscii(remarks);
          const _donarName = window.web3.utils.fromAscii(donarName);
@@ -70,7 +70,7 @@ const BloodRegistration = ({account}) => {
  
          try{
              bloodBankContract.methods.AddBloodDetails(
-                 _bloodGroup,
+                 bloodGroup,
                  _bloodQuality,
                  _remarks,
                  _donarName,
