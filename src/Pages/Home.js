@@ -147,7 +147,7 @@ const Home = ({account}) => {
         <div className={classes.container}>
             <div className={classes.leftDiv}>
                 <h2 className={classes.heading}>Blood Bank</h2>
-                <p className={classes.details}>New Generations Blood Bank powered by decentralize blockchain solution. Build in Ethereum Network. Blood Collect to Blood Verification, Distribution all done with fully decentralized system. </p>
+                <p className={classes.details}>New Generations Blood Bank powered by decentralize blockchain solution. Build on Ethereum Network. Blood Collection to Blood Verification, Distribution all done with fully decentralized system. </p>
                 <Paper  className={classes.root}>
                     <InputBase
                         className={classes.input}
@@ -191,9 +191,9 @@ const Home = ({account}) => {
                                         Status : {bloodDetails.Status === '1' ? 'Verified' : bloodDetails.Status === '2' ? 'Delivered' : 'New'}
                                         </Typography>
                                     </CardContent>
-                                    <CardActions>
+                                    {/* <CardActions>
                                         {bloodDetails.Status === '0' ? <Button onClick={() => verifyBottle(bottleId)}>Verify</Button> : bloodDetails.Status === '1' ? <Button onClick={() => markDeliveredBottle(bottleId)}>Mark Delivered</Button> : null}
-                                    </CardActions>
+                                    </CardActions> */}
                 </Card>}
             </div>
             <div  className={classes.rightDiv}>
