@@ -1,4 +1,4 @@
-export const BLOOD_BANK_ADDRESS = "0x7ed03bc1e03B325C525c12658A1afa7C60Cfee13";
+export const BLOOD_BANK_ADDRESS = "0x3e4523d8ca44c098A8a8fd1e1d6C6416944c5D58";
 
 export const BLOOD_BANK_ABI = [
   {

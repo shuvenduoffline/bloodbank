@@ -10,7 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import Button from "@material-ui/core/Button";
-import { getBloodStatus } from "../util/Util";
+import { getBloodStatus, getBlooodGroup } from "../util/Util";
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -57,7 +57,7 @@ export default function BasicTable({ data, verifyBottle }) {
           {data.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.id}</TableCell>
-              <TableCell>{row.bloodGroup}</TableCell>
+              <TableCell>{getBlooodGroup(row.bloodGroup)}</TableCell>
               <TableCell>{row.Quality}</TableCell>
               <TableCell>{row.Donar}</TableCell>
               <TableCell>{row.age}</TableCell>
@@ -65,9 +65,9 @@ export default function BasicTable({ data, verifyBottle }) {
               <TableCell>{row.ph}</TableCell>
               <TableCell>{row.agency}</TableCell>
               <TableCell>{row.created}</TableCell>
-              <TableCell>{row.status}</TableCell>
+              <TableCell>{getBloodStatus(row.status)}</TableCell>
               <TableCell>
-                {row.status === 3 ? (
+                {row.status == 2 ? (
                   <AssignmentTurnedInIcon style={{ cursor: "pointer" }} />
                 ) : (
                   <Button

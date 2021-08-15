@@ -94,7 +94,7 @@ const Collection = ({ account }) => {
             )
             .map((bd) => ({
               id: bd.BloodBottleId,
-              bloodGroup: getBlooodGroup(bd.BloodGroup),
+              bloodGroup: bd.BloodGroup,
               Quality: window.web3.utils.toAscii(bd.Quality),
               Donar: window.web3.utils.toAscii(bd.DonerName),
               age: bd.DonerAge,
