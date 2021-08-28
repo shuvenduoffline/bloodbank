@@ -72,7 +72,7 @@ const Distribution = ({ account }) => {
       bloodBankContract.defaultAccount = account;
 
       bloodBankContract.methods
-        .HealthCareAgencyList(0)
+        .getHealthCareAgencyList(0)
         .call()
         .then((blockBloodDetails) => {
           const bd_data = blockBloodDetails

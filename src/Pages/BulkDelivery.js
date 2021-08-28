@@ -13,6 +13,7 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
+import { getBlooodGroup } from "../util/Util";
 
 import {
   BLOOD_BANK_ADDRESS,
@@ -27,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
     alignContent: "center",
     alignItems: "center",
     justifyContent: "center",
-    margin: 20,
   },
   leftDiv: {
     width: "100%",
@@ -41,11 +41,11 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 20,
     marginRight: 20,
     justifyContent: "space-between",
-    height: "80vh",
+    height: "85vh",
   },
 }));
 
-const Deliver = ({ account }) => {
+const BulkDelivery = ({ account }) => {
   const classes = useStyles();
   const params = useParams();
   const [message, setMessage] = useState("");
@@ -56,6 +56,7 @@ const Deliver = ({ account }) => {
   const [Remarks, setRemarks] = useState("");
   const [Doctor, setDoctor] = useState("");
   const [agnecyIndex, setAgencyIndex] = useState(0);
+  const [numberOfBottle, setNumberOfBottle] = useState(1);
   const [healthCares, setHealthCares] = useState([]);
 
   const isValid =
@@ -69,6 +70,7 @@ const Deliver = ({ account }) => {
     PatientName.length > 2 &&
     !isNaN(PatientContactNo) &&
     PatientContactNo.length === 10 &&
+    healthCares.length > 0 &&
     !isNaN(PatientAge);
 
   const markDeliverInBlock = () => {
@@ -96,8 +98,8 @@ const Deliver = ({ account }) => {
 
       try {
         bloodBankContract.methods
-          .DeliverBloodBottle(
-            params.id,
+          .BulkDeliveryBloodBottle(
+            numberOfBottle,
             params.gp,
             window.web3.utils.fromAscii(Remarks),
             window.web3.utils.fromAscii(PatientName),
@@ -184,7 +186,7 @@ const Deliver = ({ account }) => {
             {message}
           </Alert>
         )}
-        <h3>Blood Delivery, Bottle Id : {params.id}</h3>
+        <h3>Bulk Blood Delivery, Blood Group : {getBlooodGroup(params.gp)}</h3>
         {account === CONTRACT_OWNER && (
           <form className={classes.rightDiv} autoComplete="off">
             <TextField
@@ -262,6 +264,24 @@ const Deliver = ({ account }) => {
                 <MenuItem value={-1}>{"Add New"}</MenuItem>
               </Select>
             </FormControl>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="demo-simple">Number Of Bottle</InputLabel>
+              <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                value={numberOfBottle}
+                onChange={(e) => {
+                  setNumberOfBottle(e.target.value);
+                }}
+                label="Number of Bottle"
+              >
+                {Array(parseInt(params.max) || 1)
+                  .fill(1)
+                  .map((hd, index) => (
+                    <MenuItem value={index + 1}>{index + 1}</MenuItem>
+                  ))}
+              </Select>
+            </FormControl>
 
             <TextField
               id="remarks"
@@ -277,7 +297,7 @@ const Deliver = ({ account }) => {
               disabled={!isValid}
               onClick={() => markDeliverInBlock()}
             >
-              Deliver Bottle
+              Bulk Deliver Bottle
             </Button>
           </form>
         )}
@@ -286,4 +306,4 @@ const Deliver = ({ account }) => {
   );
 };
 
-export default Deliver;
+export default BulkDelivery;

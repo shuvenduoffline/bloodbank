@@ -43,10 +43,10 @@ export default function BasicTable({ data, verifyBottle }) {
             <TableCell>Blood ID</TableCell>
             <TableCell>Blood Group</TableCell>
             <TableCell>Quality</TableCell>
-            <TableCell>Donar</TableCell>
-            <TableCell>Donar Age</TableCell>
+            <TableCell>Donor</TableCell>
+            <TableCell>Donor Age</TableCell>
             <TableCell>Medical Details</TableCell>
-            <TableCell>Donar Contact No</TableCell>
+            <TableCell>Donor Contact No</TableCell>
             <TableCell>Agency</TableCell>
             <TableCell>Created</TableCell>
             <TableCell>Status</TableCell>

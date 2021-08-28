@@ -1,4 +1,4 @@
-export const BLOOD_BANK_ADDRESS = "0x3e4523d8ca44c098A8a8fd1e1d6C6416944c5D58";
+export const BLOOD_BANK_ADDRESS = "0x7515a5eEfDCAe95f4481DD9953675a25b0F6a30b";
 
 export const BLOOD_BANK_ABI = [
   {
@@ -67,6 +67,170 @@ export const BLOOD_BANK_ABI = [
     inputs: [
       {
         internalType: "uint256",
+        name: "_NoOfBottles",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_BloodGroup",
+        type: "uint256",
+      },
+      {
+        internalType: "bytes32",
+        name: "_Remarks",
+        type: "bytes32",
+      },
+      {
+        internalType: "bytes32",
+        name: "_PatientName",
+        type: "bytes32",
+      },
+      {
+        internalType: "uint256",
+        name: "_PatientAge",
+        type: "uint256",
+      },
+      {
+        internalType: "bytes32",
+        name: "_PatientMedicalDetails",
+        type: "bytes32",
+      },
+      {
+        internalType: "uint256",
+        name: "_PatientContactNo",
+        type: "uint256",
+      },
+      {
+        internalType: "string",
+        name: "_doctorDetails",
+        type: "string",
+      },
+      {
+        internalType: "bytes32",
+        name: "_DateDemanded",
+        type: "bytes32",
+      },
+      {
+        internalType: "bytes32",
+        name: "_DateProvided",
+        type: "bytes32",
+      },
+      {
+        internalType: "uint256",
+        name: "_healthCareAgencyindex",
+        type: "uint256",
+      },
+    ],
+    name: "BulkDeliveryBloodBottle",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_BloodBottleId",
+        type: "uint256",
+      },
+      {
+        internalType: "bytes32",
+        name: "_Remarks",
+        type: "bytes32",
+      },
+      {
+        internalType: "bytes32",
+        name: "_PatientName",
+        type: "bytes32",
+      },
+      {
+        internalType: "uint256",
+        name: "_PatientAge",
+        type: "uint256",
+      },
+      {
+        internalType: "bytes32",
+        name: "_PatientMedicalDetails",
+        type: "bytes32",
+      },
+      {
+        internalType: "uint256",
+        name: "_PatientContactNo",
+        type: "uint256",
+      },
+      {
+        internalType: "string",
+        name: "_doctorDetails",
+        type: "string",
+      },
+      {
+        internalType: "bytes32",
+        name: "_DateDemanded",
+        type: "bytes32",
+      },
+      {
+        internalType: "bytes32",
+        name: "_DateProvided",
+        type: "bytes32",
+      },
+      {
+        internalType: "uint256",
+        name: "_healthCareAgencyindex",
+        type: "uint256",
+      },
+    ],
+    name: "DeliverBloodBottle",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "_agencyType",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_agencyName",
+        type: "string",
+      },
+      {
+        internalType: "address",
+        name: "_addressID",
+        type: "address",
+      },
+      {
+        internalType: "string",
+        name: "_contactPerson",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "_contactNo",
+        type: "uint256",
+      },
+      {
+        internalType: "string",
+        name: "_agencyAddress",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "_pincode",
+        type: "uint256",
+      },
+    ],
+    name: "addAgency",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
         name: "_BloodGroup",
         type: "uint256",
       },
@@ -111,18 +275,118 @@ export const BLOOD_BANK_ABI = [
         type: "bytes32",
       },
     ],
-    name: "AddBloodDetails",
+    name: "addBloodDetails",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
   {
-    inputs: [],
-    name: "BloodBottleIdNo",
+    inputs: [
+      {
+        internalType: "string",
+        name: "_agencyType",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_agencyName",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_contactPerson",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "_contactNo",
+        type: "uint256",
+      },
+      {
+        internalType: "string",
+        name: "_agencyAddress",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "_pincode",
+        type: "uint256",
+      },
+    ],
+    name: "addHealthCareAgency",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_addressID",
+        type: "address",
+      },
+    ],
+    name: "getAgencyData",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "string",
+            name: "agencyType",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "agencyName",
+            type: "string",
+          },
+          {
+            internalType: "address",
+            name: "addressID",
+            type: "address",
+          },
+          {
+            internalType: "string",
+            name: "contactPerson",
+            type: "string",
+          },
+          {
+            internalType: "uint256",
+            name: "contactNo",
+            type: "uint256",
+          },
+          {
+            internalType: "string",
+            name: "agencyAddress",
+            type: "string",
+          },
+          {
+            internalType: "uint256",
+            name: "pincode",
+            type: "uint256",
+          },
+        ],
+        internalType: "struct BloodBank2.Agency",
+        name: "agency",
+        type: "tuple",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_BloodGroup",
+        type: "uint256",
+      },
+    ],
+    name: "getBloodBottleGroupTotal",
     outputs: [
       {
         internalType: "uint256",
-        name: "",
+        name: "a",
         type: "uint256",
       },
     ],
@@ -137,7 +401,7 @@ export const BLOOD_BANK_ABI = [
         type: "uint256",
       },
     ],
-    name: "BloodBottleList",
+    name: "getBloodBottleList",
     outputs: [
       {
         components: [
@@ -214,93 +478,11 @@ export const BLOOD_BANK_ABI = [
     inputs: [
       {
         internalType: "uint256",
-        name: "_BloodBottleId",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_BloodGroup",
-        type: "uint256",
-      },
-      {
-        internalType: "bytes32",
-        name: "_Remarks",
-        type: "bytes32",
-      },
-      {
-        internalType: "bytes32",
-        name: "_PatientName",
-        type: "bytes32",
-      },
-      {
-        internalType: "uint256",
-        name: "_PatientAge",
-        type: "uint256",
-      },
-      {
-        internalType: "bytes32",
-        name: "_PatientMedicalDetails",
-        type: "bytes32",
-      },
-      {
-        internalType: "uint256",
-        name: "_PatientContactNo",
-        type: "uint256",
-      },
-      {
-        internalType: "string",
-        name: "_doctorDetails",
-        type: "string",
-      },
-      {
-        internalType: "bytes32",
-        name: "_DateDemanded",
-        type: "bytes32",
-      },
-      {
-        internalType: "bytes32",
-        name: "_DateProvided",
-        type: "bytes32",
-      },
-      {
-        internalType: "uint256",
-        name: "_healthCareAgencyindex",
-        type: "uint256",
-      },
-    ],
-    name: "DeliverBloodBottle",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_BloodGroup",
-        type: "uint256",
-      },
-    ],
-    name: "GetBloodBottleGroupTotal",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "a",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
         name: "start",
         type: "uint256",
       },
     ],
-    name: "HealthCareAgencyList",
+    name: "getHealthCareAgencyList",
     outputs: [
       {
         components: [
@@ -340,314 +522,9 @@ export const BLOOD_BANK_ABI = [
             type: "uint256",
           },
         ],
-        internalType: "struct BloodBank2.HealthCareAgency[50]",
+        internalType: "struct BloodBank2.HealthCareAgency[30]",
         name: "temp",
-        type: "tuple[50]",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "TotalNoOfAgencies",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "TotalNoOfHealthCareAgencies",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "string",
-        name: "_agencyType",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "_agencyName",
-        type: "string",
-      },
-      {
-        internalType: "address",
-        name: "_addressID",
-        type: "address",
-      },
-      {
-        internalType: "string",
-        name: "_contactPerson",
-        type: "string",
-      },
-      {
-        internalType: "uint256",
-        name: "_contactNo",
-        type: "uint256",
-      },
-      {
-        internalType: "string",
-        name: "_agencyAddress",
-        type: "string",
-      },
-      {
-        internalType: "uint256",
-        name: "_pincode",
-        type: "uint256",
-      },
-    ],
-    name: "addAgency",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "string",
-        name: "_agencyType",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "_agencyName",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "_contactPerson",
-        type: "string",
-      },
-      {
-        internalType: "uint256",
-        name: "_contactNo",
-        type: "uint256",
-      },
-      {
-        internalType: "string",
-        name: "_agencyAddress",
-        type: "string",
-      },
-      {
-        internalType: "uint256",
-        name: "_pincode",
-        type: "uint256",
-      },
-    ],
-    name: "addHealthCareAgency",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    name: "agencyCollection",
-    outputs: [
-      {
-        internalType: "string",
-        name: "agencyType",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "agencyName",
-        type: "string",
-      },
-      {
-        internalType: "address",
-        name: "addressID",
-        type: "address",
-      },
-      {
-        internalType: "string",
-        name: "contactPerson",
-        type: "string",
-      },
-      {
-        internalType: "uint256",
-        name: "contactNo",
-        type: "uint256",
-      },
-      {
-        internalType: "string",
-        name: "agencyAddress",
-        type: "string",
-      },
-      {
-        internalType: "uint256",
-        name: "pincode",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "bloodCollection",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "BloodGroup",
-        type: "uint256",
-      },
-      {
-        internalType: "bytes32",
-        name: "Quality",
-        type: "bytes32",
-      },
-      {
-        internalType: "bytes32",
-        name: "Remarks",
-        type: "bytes32",
-      },
-      {
-        internalType: "bytes32",
-        name: "DonerName",
-        type: "bytes32",
-      },
-      {
-        internalType: "uint256",
-        name: "DonerAge",
-        type: "uint256",
-      },
-      {
-        internalType: "bytes32",
-        name: "DonerMedicalDetails",
-        type: "bytes32",
-      },
-      {
-        internalType: "uint256",
-        name: "DonerContactNo",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "BloodBottleId",
-        type: "uint256",
-      },
-      {
-        internalType: "enum BloodBank2.BloodBottleStatus",
-        name: "Status",
-        type: "uint8",
-      },
-      {
-        internalType: "bytes32",
-        name: "DateCreated",
-        type: "bytes32",
-      },
-      {
-        internalType: "bytes32",
-        name: "DateUpdated",
-        type: "bytes32",
-      },
-      {
-        internalType: "address",
-        name: "agency",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "enum BloodBank2.BloodGroup",
-        name: "",
-        type: "uint8",
-      },
-    ],
-    name: "bloodGroup",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_addressID",
-        type: "address",
-      },
-    ],
-    name: "getAgencyData",
-    outputs: [
-      {
-        components: [
-          {
-            internalType: "string",
-            name: "agencyType",
-            type: "string",
-          },
-          {
-            internalType: "string",
-            name: "agencyName",
-            type: "string",
-          },
-          {
-            internalType: "address",
-            name: "addressID",
-            type: "address",
-          },
-          {
-            internalType: "string",
-            name: "contactPerson",
-            type: "string",
-          },
-          {
-            internalType: "uint256",
-            name: "contactNo",
-            type: "uint256",
-          },
-          {
-            internalType: "string",
-            name: "agencyAddress",
-            type: "string",
-          },
-          {
-            internalType: "uint256",
-            name: "pincode",
-            type: "uint256",
-          },
-        ],
-        internalType: "struct BloodBank2.Agency",
-        name: "agency",
-        type: "tuple",
+        type: "tuple[30]",
       },
     ],
     stateMutability: "view",
@@ -735,48 +612,12 @@ export const BLOOD_BANK_ABI = [
     type: "function",
   },
   {
-    inputs: [
+    inputs: [],
+    name: "totalAgency",
+    outputs: [
       {
         internalType: "uint256",
         name: "",
-        type: "uint256",
-      },
-    ],
-    name: "healthCareAgency",
-    outputs: [
-      {
-        internalType: "string",
-        name: "agencyType",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "agencyName",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "contactPerson",
-        type: "string",
-      },
-      {
-        internalType: "uint256",
-        name: "contactNo",
-        type: "uint256",
-      },
-      {
-        internalType: "string",
-        name: "agencyAddress",
-        type: "string",
-      },
-      {
-        internalType: "uint256",
-        name: "pincode",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "NoBottlesDemanded",
         type: "uint256",
       },
     ],

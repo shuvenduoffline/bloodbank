@@ -80,7 +80,7 @@ const BloodRegistration = ({ account }) => {
 
       try {
         bloodBankContract.methods
-          .AddBloodDetails(
+          .addBloodDetails(
             bloodGroup,
             _bloodQuality,
             _remarks,
@@ -136,7 +136,7 @@ const BloodRegistration = ({ account }) => {
           <TextField
             required
             id="name"
-            label="Donar Name"
+            label="Donor Name"
             variant="outlined"
             value={donarName}
             onChange={(e) => setDonarName(e.currentTarget.value)}

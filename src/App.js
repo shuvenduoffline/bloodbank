@@ -11,6 +11,7 @@ import AddAgency from "./Pages/AddAgency";
 import AddHealthCare from "./Pages/AddHealthCare";
 import Dashboard from "./Pages/Dashboard";
 import Deliver from "./Pages/Deliver";
+import BulkDelivery from "./Pages/BulkDelivery";
 import Collection from "./Pages/Collection";
 import Distribution from "./Pages/Distribution";
 import React from "react";
@@ -92,6 +93,9 @@ function App() {
           </Route>
           <Route path="/deliver/:id/:gp">
             <Deliver account={account} />
+          </Route>
+          <Route path="/bulkdelivery/:max/:gp">
+            <BulkDelivery account={account} />
           </Route>
           <Route path="/collection">
             <Collection account={account} />
