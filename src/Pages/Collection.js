@@ -85,7 +85,7 @@ const Collection = ({ account }) => {
       bloodBankContract.defaultAccount = account;
 
       bloodBankContract.methods
-        .getBloodBottleList(page - 1)
+        .getBloodBottleList(10 * (page - 1))
         .call()
         .then((blockBloodDetails) => {
           const bd_data = blockBloodDetails
