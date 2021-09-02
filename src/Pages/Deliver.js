@@ -98,7 +98,6 @@ const Deliver = ({ account }) => {
         bloodBankContract.methods
           .DeliverBloodBottle(
             params.id,
-            params.gp,
             window.web3.utils.fromAscii(Remarks),
             window.web3.utils.fromAscii(PatientName),
             PatientAge,
