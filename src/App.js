@@ -29,23 +29,34 @@ function App() {
         await window.ethereum.send("eth_requestAccounts");
         window.web3 = new Web3(window.ethereum);
         const accounts = await window.web3.eth.getAccounts();
+        console.log('Accounts ', accounts)
         setAccount(accounts[0]);
         return true;
       } catch (error) {
-        console.log("Error : ", error);
+        if(error && error.code === 4001){
+          console.log('User denied connection!');
+          return true;
+        }
+        console.log("Error In Wallet connect: ", error);
         return false;
       }
     }
     return false;
   };
 
-  React.useEffect(() => {
-    if (!ethEnabled()) {
+  const checkAndConnectToWallet =async () => {
+    if (!await ethEnabled()) {
       alert("Please Install A Ethereum Wallet!");
     }
+  }
+
+  React.useEffect(() => {
+    checkAndConnectToWallet()
   }, []);
 
   console.log("Account : ", account);
+
+  console.log(checkAndConnectToWallet)
 
   return (
     <div
@@ -65,7 +76,7 @@ function App() {
           marginRight: 100,
         }}
       >
-        <Navigations isOwner={account === CONTRACT_OWNER} />
+        <Navigations isOwner={account === CONTRACT_OWNER} checkAndConnectToWallet={checkAndConnectToWallet} account={account}/>
       </div>
 
       <HashRouter>

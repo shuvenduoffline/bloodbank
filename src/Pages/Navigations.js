@@ -1,6 +1,7 @@
 import React from "react";
 import NavItem from "../Components/NavItem";
 import { makeStyles } from "@material-ui/core/styles";
+import ConnectedButton from "../Components/ConnectedButton";
 
 const useStyles = makeStyles((theme) => ({
   menus: {
@@ -8,12 +9,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "space-between",
     margin: 10,
-    width: 600,
+    // width: 600,
     alignItems: "end",
   },
 }));
 
-const Navigations = ({ isOwner = false }) => {
+const Navigations = ({ isOwner = false, checkAndConnectToWallet, account }) => {
   const classes = useStyles();
 
   const navigateToPath = (path) => {
@@ -59,6 +60,8 @@ const Navigations = ({ isOwner = false }) => {
       />
 
       <NavItem name={"About Us"} onClickMenu={navigateToPath} path={"/about"} />
+
+      <ConnectedButton name={ account  === "" ? "Connect Wallet" : account} checkAndConnectToWallet={account  === "" ? checkAndConnectToWallet : () => {}}/>
     </div>
   );
 };
